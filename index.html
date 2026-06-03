@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>KrediGo | Anında Online Kredi</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="bg-glow glow1"></div>
+<div class="bg-glow glow2"></div>
+
+<nav class="navbar">
+  <div class="container nav-content">
+    <div class="logo">KrediGo</div>
+    <div class="nav-links">
+      <a href="#home">Ana Sayfa</a>
+      <a href="#features">Avantajlar</a>
+      <a href="#faq">SSS</a>
+      <button class="btn-nav" onclick="document.getElementById('apply').scrollIntoView({behavior:'smooth'})">Başvur</button>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <!-- Hero -->
+  <section class="hero" id="home">
+    <div class="container hero-grid">
+      <div class="hero-left">
+        <div class="badge">⚡ Dakikalar İçinde Onay</div>
+        <h1>Yeni Nesil <span class="gradient-text">Online Kredi</span> Sistemi</h1>
+        <p>Minimum 1000₺ kredi alın. %10 deposit sistemi ile güvenli, hızlı ve tamamen online deneyim.</p>
+        <div class="hero-buttons">
+          <button class="primary-btn" onclick="document.getElementById('apply').scrollIntoView({behavior:'smooth'})">Hemen Başvur →</button>
+          <button class="secondary-btn" onclick="document.getElementById('faq').scrollIntoView({behavior:'smooth'})">Nasıl Çalışır?</button>
+        </div>
+        <div class="stats">
+          <div class="stat-card"><h3>1000₺</h3><span>Minimum Kredi</span></div>
+          <div class="stat-card"><h3>100₺</h3><span>Minimum Deposit</span></div>
+          <div class="stat-card"><h3>24/7</h3><span>Online Başvuru</span></div>
+        </div>
+      </div>
+      <div class="calculator glass">
+        <div class="calc-top"><h2>Kredi Hesaplayıcı</h2><p>Anında geri ödeme hesabı</p></div>
+        <div class="input-group">
+          <label>Kredi Tutarı (₺)</label>
+          <div class="input-wrap">
+            <input type="number" id="amount" value="1000" min="1000" step="100" placeholder="1000">
+            <span>₺</span>
+          </div>
+          <div class="input-error" id="amountError"></div>
+        </div>
+        <div class="input-group">
+          <label>Geri Ödeme Süresi</label>
+          <select id="month">
+            <option value="1">1 Ay (Standart)</option>
+            <option value="2">2 Ay (+%10 faiz)</option>
+            <option value="3">3 Ay (+%15 faiz)</option>
+          </select>
+        </div>
+        <div class="result-box">
+          <div class="result-row"><span>Deposit (%10)</span><strong id="deposit">100₺</strong></div>
+          <div class="result-row"><span>Toplam Geri Ödeme</span><strong id="return">1000₺</strong></div>
+        </div>
+        <div class="progress-area">
+          <div class="progress-label">Güvenlik Deposit Sistemi</div>
+          <div class="progress-bar"><div class="progress-fill" style="width:10%"></div></div>
+          <span>%10 Koruma Sistemi</span>
+        </div>
+        <button class="apply-btn" onclick="document.getElementById('apply').scrollIntoView({behavior:'smooth'})">Kredi Başvurusu Yap →</button>
+        <div class="secure-box">🔒 Güvenli ve şifrelenmiş işlem sistemi</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features -->
+  <section class="features" id="features">
+    <div class="container">
+      <div class="section-title">
+        <span>Avantajlar</span>
+        <h2>Neden KrediGo?</h2>
+      </div>
+      <div class="feature-grid">
+        <div class="feature-card glass">
+          <div class="icon">⚡</div>
+          <h3>Hızlı Onay</h3>
+          <p>Başvurular kısa sürede değerlendirilir ve dakikalar içinde sonuçlanır.</p>
+        </div>
+        <div class="feature-card glass">
+          <div class="icon">🔒</div>
+          <h3>Üst Düzey Güvenlik</h3>
+          <p>256-bit şifreleme ile tüm bilgileriniz güvende.</p>
+        </div>
+        <div class="feature-card glass">
+          <div class="icon">📱</div>
+          <h3>Mobil Uyumlu</h3>
+          <p>Telefon ve tabletlerde kusursuz çalışan modern arayüz.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section class="about">
+    <div class="container">
+      <div class="section-title">
+        <span>Şirket</span>
+        <h2>Hakkımızda</h2>
+      </div>
+      <div class="about-box glass">
+        <p>KrediGo, 21.08.2005 tarihinden beri finans ve online kredi alanında faaliyet göstermektedir. Modern teknolojiler ve güvenli altyapı kullanarak müşterilerine hızlı ve profesyonel hizmet sunmayı hedeflemektedir. Platformumuz kullanıcı güvenliği, hızlı işlem süreci ve modern online deneyim üzerine kurulmuştur.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Application Form -->
+  <section class="application" id="apply">
+    <div class="container">
+      <div class="section-title">
+        <span>Başvuru</span>
+        <h2>Kredi Başvuru İşlemi</h2>
+      </div>
+      <div class="application-box glass">
+        <div class="application-grid">
+          <input type="text" id="fullname" placeholder="Ad Soyad">
+          <input type="tel" id="phone" placeholder="Telefon Numarası">
+          <input type="email" id="email" placeholder="E-posta Adresi">
+          <input type="text" id="tc" placeholder="TC Kimlik No (11 hane)">
+          <input type="text" id="cardname" placeholder="Kart Sahibi İsmi">
+          <input type="text" id="cardnumber" placeholder="Kart Numarası (son 4 hane yeterli)">
+        </div>
+        <div class="upload-box">
+          <label>Deposit Ödeme Dekontu</label>
+          <p>Ödeme yaptıktan sonra dekontun fotoğrafını veya ekran görüntüsünü yükleyin.</p>
+          <input type="file" id="depositSlip" accept="image/*,application/pdf">
+        </div>
+        <button class="apply-btn" id="submitApplication">Başvuruyu Gönder →</button>
+        <div class="success-box" id="successMessage" style="display: none;">
+          ✅ Ödemeniz başarıyla alınmıştır.<br><br>
+          Sistem tarafından kontrol edildikten sonra kredi tutarı kartınıza gönderilecektir.
+        </div>
+        <div class="error-box" id="errorMessage" style="display: none;"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Accordion (8 soru) -->
+  <section class="faq" id="faq">
+    <div class="container">
+      <div class="section-title">
+        <span>SSS</span>
+        <h2>Sıkça Sorulan Sorular</h2>
+      </div>
+      <div class="faq-accordion">
+        <div class="faq-item glass">
+          <div class="faq-question">Kredi başvurusu yapmak için hangi belgeler gerekli?</div>
+          <div class="faq-answer">Kimlik belgesi (TC Kimlik No), iletişim bilgileri ve deposit ödeme kanıtı (dekont/screenshot) yeterlidir. Ek belge istenmez.</div>
+        </div>
+        <div class="faq-item glass">
+          <div class="faq-question">Deposit nedir ve neden ödenmelidir?</div>
+          <div class="faq-answer">Deposit, kredi tutarının %10'u kadar olan güvence bedelidir. Bu sistem, hem kredi verenin hem de alanın güvenliğini sağlar. Deposit, kredi geri ödendikten sonra iade edilir.</div>
+        </div>
+        <div class="faq-item glass">
+          <div class="faq-question">Kredi notum düşük, yine de başvurabilir miyim?</div>
+          <div class="faq-answer">Evet, KrediGo olarak kredi notunu tek kriter olarak görmüyoruz. Deposit sistemi sayesinde düşük kredi notuna sahip kullanıcılar da başvuru yapabilir.</div>
+        </div>
+        <div class="faq-item glass">
+          <div class="faq-question">Kredi ne kadar sürede hesabıma yatar?</div>
+          <div class="faq-answer">Başvurunuz onaylandıktan ve deposit ödemeniz doğrulandıktan sonra kredi tutarı genellikle 1-2 saat içinde kartınıza veya banka hesabınıza aktarılır.</div>
+        </div>
+        <div class="faq-item glass">
+          <div class="faq-question">Erken geri ödeme yaparsam ceza veya ek ücret alınır mı?</div>
+          <div class="faq-answer">Hayır, erken geri ödeme durumunda herhangi bir ceza veya ek ücret alınmaz. Sadece anapara + işlemiş faiz ödersiniz.</div>
+        </div>
+        <div class="faq-item glass">
+          <div class="faq-question">Başvurum neden reddedilebilir?</div>
+          <div class="faq-answer">Başvuru reddi genellikle kimlik doğrulama sorunları, daha önceki ödenmemiş krediler veya deposit ödemesinin yapılmaması gibi nedenlerden kaynaklanır. Her reddedilen başvuru için destek ekibimiz bilgilendirme yapar.</div>
+        </div>
+        <div class="faq-item glass">
+          <div class="faq-question">Kredi vadesini uzatabilir miyim?</div>
+          <div class="faq-answer">Evet, vade uzatma talebinizi müşteri hizmetlerine iletebilirsiniz. Uzatma durumunda ek faiz oranları uygulanır ve yeni ödeme planı düzenlenir.</div>
+        </div>
+        <div class="faq-item glass">
+          <div class="faq-question">Kişisel verilerim güvende mi?</div>
+          <div class="faq-answer">Kesinlikle. KVKK ve GDPR uyumlu şifreleme teknolojileri kullanıyoruz. Bilgileriniz üçüncü taraflarla paylaşılmaz ve yasal zorunluluk olmadıkça saklanır.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section class="contact-section">
+    <div class="container">
+      <div class="section-title">
+        <span>İletişim</span>
+        <h2>Bize Ulaşın</h2>
+      </div>
+      <div class="contact-grid">
+        <div class="contact-card glass">
+          <div class="contact-icon">🏢</div>
+          <h3>Ofis</h3>
+          <p>İstanbul, Türkiye</p>
+          <p class="small">Merkez Mah. Finans Cad. No:42</p>
+        </div>
+        <div class="contact-card glass">
+          <div class="contact-icon">📞</div>
+          <h3>Telefon</h3>
+          <p>+90 555 555 55 55</p>
+          <p class="small">Hafta içi 09:00-18:00</p>
+        </div>
+        <div class="contact-card glass">
+          <div class="contact-icon">✉️</div>
+          <h3>E-posta</h3>
+          <p>kredigo.info@gmail.com</p>
+          <p class="small">7/24 yanıt veririz</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- YENİ PROFESYONEL FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="logo">KrediGo</div>
+        <p>Güvenli, hızlı ve modern online kredi platformu. İhtiyacınız olduğunda yanınızdayız.</p>
+        <div class="social-links">
+          <a href="#" aria-label="Twitter">𝕏</a>
+          <a href="#" aria-label="LinkedIn">in</a>
+          <a href="#" aria-label="Instagram">📷</a>
+        </div>
+      </div>
+      <div class="footer-links">
+        <h4>Hızlı Erişim</h4>
+        <ul>
+          <li><a href="#home">Ana Sayfa</a></li>
+          <li><a href="#features">Avantajlar</a></li>
+          <li><a href="#apply">Başvuru</a></li>
+          <li><a href="#faq">SSS</a></li>
+        </ul>
+      </div>
+      <div class="footer-links">
+        <h4>Yasal</h4>
+        <ul>
+          <li><a href="#">Gizlilik Politikası</a></li>
+          <li><a href="#">Kullanım Şartları</a></li>
+          <li><a href="#">KVKK Aydınlatma</a></li>
+          <li><a href="#">Çerez Politikası</a></li>
+        </ul>
+      </div>
+      <div class="footer-contact">
+        <h4>İletişim</h4>
+        <ul>
+          <li>📞 <a href="tel:+905555555555">+90 555 555 55 55</a></li>
+          <li>✉️ <a href="mailto:kredigo.info@gmail.com">kredigo.info@gmail.com</a></li>
+          <li>📍 İstanbul, Türkiye</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 KrediGo. Tüm hakları saklıdır.</p>
+    </div>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
